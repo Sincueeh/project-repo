@@ -1,37 +1,20 @@
-## Welcome to GitHub Pages
+## Welcome to project-repo: Jorge Caceres personal repository!
 
-You can use the [editor on GitHub](https://github.com/Sincueeh/project-repo/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+This repository will be constantly updated to show 
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+1. Java integration solutions for data interpretation 
+2. Fullstack content (Coming soon!)
+3. Backend content (Coming soon!)
 
-### Markdown
+It's a little repo but hope you can enjoy it!
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+### Standards
 
-```markdown
-Syntax highlighted code block
+Let's discuss our own naming conventions for this repo! So, everyone can understand it!
 
-# Header 1
-## Header 2
-### Header 3
 
-- Bulleted
-- List
+### Theme used
 
-1. Numbered
-2. List
+Jekyll
 
-**Bold** and _Italic_ and `Code` text
 
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/Sincueeh/project-repo/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
