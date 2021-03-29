@@ -1,26 +1,16 @@
 package main.java;
 
-import java.util.List;
 
-import main.java.models.Checkin;
-import main.java.models.ConfirmarMeetup;
-import main.java.models.Meetup;
-import main.java.models.Request_CurrentWeather;
-import main.java.models.Request_SearchWeather;
-import main.java.models.Response_CurrentWeather;
-import main.java.models.Response_SearchWeather;
-import main.java.models.ResultWeather;
-import main.java.models.Results;
-import main.java.models.Usuario;
-import main.java.util.Autenticar;
-import main.java.util.CrearMeetup;
-import main.java.util.GetCurrentWeather;
-import main.java.util.RealizarCheckin;
-import main.java.util.SearchWeatherData;
+import main.java.api.weather.GetCurrentWeather;
+import main.java.api.weather.SearchWeatherData;
+import main.java.challenge.meetup.CrearMeetup;
+import main.java.challenge.meetup.RealizarCheckin;
+import main.java.models.*;
+import main.java.util.*;
 
 public class ChallengeMeetup {
 
-	public static void main(List<Usuario> users, Meetup meet, Request_CurrentWeather request, Request_SearchWeather reqs) {
+	public static void main(Credentials credenciales, Usuario user, Meetup meet, Request_CurrentWeather request, Request_SearchWeather reqs) {
 
 		ConfirmarMeetup confirmacion = new ConfirmarMeetup();
 		Checkin check = new Checkin();
@@ -32,21 +22,19 @@ public class ChallengeMeetup {
 		int birras = 0;
 
 		try {
-
-			for (Usuario usuario : users) {
-				login = Autenticar.auth(usuario);
-				if(login.booleanValue() == true) {
-					admin = usuario.getAdmin();
-					if(admin == true) {
-						confirmacion = CrearMeetup.meetup(usuario, meet);
-						if(confirmacion.isCreada()) {
-							int cupo = confirmacion.getMeet().getCupoMax();
+			login = Login.main(credenciales);
+			if(login.booleanValue() == true){
+				if(Autenticar.auth(user).booleanValue() == true){
+					if(user.getAdmin().booleanValue() == true){
+						confirmacion = CrearMeetup.meetup(user, meet);
+						if(confirmacion.isCreada()){
+							int cupoMax = confirmacion.getMeet().getCupoMax();
 							Response_SearchWeather rSearch = SearchWeatherData.main(reqs);
-							if(rSearch.getResponseCode() == 200) {	
+							if(rSearch.getResponseCode() == 200) {
 								for (ResultWeather rw : rSearch.getClima()) {
 									if(rw.getList().size() > 0) {
-										for (Results r : rw.getList()) { 
-											birras = presupuestarBirras(cupo, r.getMain().getTemp());
+										for (Results r : rw.getList()) {
+											birras = presupuestarBirras(cupoMax, r.getMain().getTemp());
 										}
 									}
 								}
@@ -58,7 +46,7 @@ public class ChallengeMeetup {
 					}else{
 						if(!meet.getTitulo().isEmpty()){
 							asistencia = true;
-							check = RealizarCheckin.checkin(usuario, meet, asistencia);
+							check = RealizarCheckin.checkin(user, meet, asistencia);
 							if(check.isCheck()) {
 								resApi = GetCurrentWeather.main(request);
 								notificarAsistencia(check, resApi.getClima().getMain().getTemp());

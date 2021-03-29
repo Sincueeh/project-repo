@@ -1,4 +1,4 @@
-package main.java.util;
+package main.java.challenge.meetup;
 
 import java.util.Random;
 

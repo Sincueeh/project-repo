@@ -4,7 +4,7 @@ import main.java.models.Header;
 import main.java.models.Parameters_CurrentWeather;
 import main.java.models.Request_CurrentWeather;
 import main.java.models.Response_CurrentWeather;
-import main.java.util.GetCurrentWeather;
+import main.java.api.weather.GetCurrentWeather;
 
 public class TEST_CurrentWeather {
 

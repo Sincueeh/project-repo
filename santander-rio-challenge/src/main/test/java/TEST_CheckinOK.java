@@ -3,7 +3,7 @@ package main.test.java;
 import main.java.models.Checkin;
 import main.java.models.Meetup;
 import main.java.models.Usuario;
-import main.java.util.RealizarCheckin;
+import main.java.challenge.meetup.RealizarCheckin;
 
 public class TEST_CheckinOK {
 

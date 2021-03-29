@@ -8,7 +8,7 @@ import java.util.Date;
 import main.java.models.ConfirmarMeetup;
 import main.java.models.Meetup;
 import main.java.models.Usuario;
-import main.java.util.CrearMeetup;
+import main.java.challenge.meetup.CrearMeetup;
 
 
 /**
@@ -28,7 +28,7 @@ public class TEST_MeetupOK {
 		ConfirmarMeetup conf = new ConfirmarMeetup();
 		
 		orga.setNombre("Jorge");
-		orga.setApellido("Cáceres");
+		orga.setApellido("Cï¿½ceres");
 		orga.setAdmin(true);
 
 		meet.setCupoMax(250);

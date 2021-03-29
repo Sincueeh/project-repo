@@ -1,19 +1,16 @@
-package main.java.util;
-
-import java.util.ArrayList;
-import java.util.List;
+package main.java.api.weather;
 
 import com.google.gson.Gson;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
-import main.java.models.Request_SearchWeather;
-import main.java.models.Response_SearchWeather;
-import main.java.models.ResultWeather;
+import main.java.models.CurrentWeather;
+import main.java.models.Request_CurrentWeather;
+import main.java.models.Response_CurrentWeather;
 
-public class SearchWeatherData {
-	public static Response_SearchWeather main (Request_SearchWeather req) {
-		Response_SearchWeather rta = new Response_SearchWeather();	
+public class GetCurrentWeather {
+	public static Response_CurrentWeather main (Request_CurrentWeather req) {
+		Response_CurrentWeather rta = new Response_CurrentWeather();	
 		try {
 			OkHttpClient client = new OkHttpClient();
 			String host = req.getHeader().getHostname();
@@ -43,28 +40,23 @@ public class SearchWeatherData {
 		return request;
 	}
 
-	private static Response_SearchWeather asignarDatos(Response response, Response_SearchWeather rta) {
+	private static Response_CurrentWeather asignarDatos(Response response, Response_CurrentWeather rta) {
 		// TODO Auto-generated method stub
 
 		try {
 			if (response.isSuccessful()) {
 				Gson gson = new Gson();
-				List<ResultWeather> list = new ArrayList<>();
 				String jsonObj = response.body().string();
-								
-				ResultWeather json = gson.fromJson(jsonObj, ResultWeather.class);
-				rta.setResponseCode(response.code());
+				rta.setResponseCode(200);
+				rta.setMessage("OK");
+				CurrentWeather clima = gson.fromJson(jsonObj, CurrentWeather.class);
+				rta.setClima(clima);
 				
-				if(json != null) {
-					list.add(json);
-				}
-				
-				rta.setClima(list);
 			}else {
 				rta.setResponseCode(response.code());
 				rta.setMessage(response.message());
 			}
-			
+		
 		}catch(Exception e) {
 			System.out.println("Error en asignarDatos Method: "+e);
 		}
@@ -72,27 +64,30 @@ public class SearchWeatherData {
 		
 	}
 
-	private static StringBuilder armarURL(Request_SearchWeather req) {
+	private static StringBuilder armarURL(Request_CurrentWeather req) {
 		
 		StringBuilder sb = new StringBuilder();
 		try {
 			
 			sb.append(req.getUrl());
-			sb.append("/find?");
-			sb.append("cnt=");
-			sb.append(req.getParams().getCnt());
-			sb.append("&mode=");
-			sb.append(req.getParams().getMode());
+			sb.append("/weather?");
+			sb.append("lat=");
+			sb.append(req.getParams().getLat());
 			sb.append("&lon=");
 			sb.append(req.getParams().getLon());
-			sb.append("&type=");
-			sb.append(req.getParams().getType());
-			sb.append("&lat=");
-			sb.append(req.getParams().getLat());
+			sb.append("&callback=");
+			sb.append(req.getParams().getCallback());
+			sb.append("&id=");
+			sb.append(req.getParams().getId());
 			sb.append("&units=");
 			sb.append(req.getParams().getUnits());
+			sb.append("&lang=");
+			sb.append(req.getParams().getLang());
+			sb.append("&mode=");
+			sb.append(req.getParams().getMode());
 			sb.append("&q=");
 			sb.append(req.getParams().getQ());
+			
 		}catch(Exception e) {
 			System.out.println("Error en armarURL Method: "+e);
 		}

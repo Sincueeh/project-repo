@@ -1,4 +1,4 @@
-package main.java.util;
+package main.java.challenge.meetup;
 
 import main.java.models.Checkin;
 import main.java.models.Meetup;

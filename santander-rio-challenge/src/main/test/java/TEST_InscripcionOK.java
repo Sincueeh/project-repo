@@ -6,7 +6,7 @@ import main.java.models.ConfirmarMeetup;
 import main.java.models.Inscripcion;
 import main.java.models.Meetup;
 import main.java.models.Usuario;
-import main.java.util.InscribirAMeetup;
+import main.java.challenge.meetup.InscribirAMeetup;
 
 public class TEST_InscripcionOK {
 

@@ -8,7 +8,7 @@ import main.java.models.Request_SearchWeather;
 
 import main.java.models.Response_SearchWeather;
 import main.java.models.ResultWeather;
-import main.java.util.SearchWeatherData;
+import main.java.api.weather.SearchWeatherData;
 
 public class TEST_SearchWeather {
 
